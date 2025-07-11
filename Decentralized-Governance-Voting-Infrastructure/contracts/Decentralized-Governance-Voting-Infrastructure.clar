@@ -272,3 +272,14 @@
   )
 )
 
+;; Admin Functions
+;; Upgrade Governance Parameters (Controlled by Contract Owner)
+(define-public (upgrade-governance-params 
+  (new-max-delegation-depth uint)
+)
+  (begin
+    (asserts! (is-eq tx-sender CONTRACT-OWNER) ERR-UNAUTHORIZED)
+    ;; Future expansion for upgrading governance parameters
+    (ok true)
+  )
+)
