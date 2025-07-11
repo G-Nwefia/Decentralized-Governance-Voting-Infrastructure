@@ -301,3 +301,23 @@
     contract-paused: (var-get contract-paused)
   }
 )
+
+;; Token Burning Mechanism (Optional)
+(define-public (burn-governance-tokens (amount uint))
+  (begin
+    (try! (ft-burn? governance-token amount tx-sender))
+    (var-set total-governance-tokens 
+      (- (var-get total-governance-tokens) amount)
+    )
+    (ok true)
+  )
+)
+
+;; NEW FEATURE: Vote Types (beyond simple yes/no)
+(define-constant VOTE-TYPES 
+  {
+    FOR: u1,
+    AGAINST: u2,
+    ABSTAIN: u3
+  }
+)
